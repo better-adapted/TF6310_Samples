@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.5">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="MAIN" Id="{572507de-a44a-4a7e-b7eb-52f2373576ea}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
@@ -41,10 +41,14 @@ VAR
 		sClient2ReceivedData		: STRING(255);			
 	fbTcpServer2					: FB_TCPServer;
 		sServer2Data				: STRING(255); *)
+	CYCLES: DINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF bInit THEN 				// Init Step to close all sockets after login PLC with  downlaod
+      <ST><![CDATA[CYCLES:=CYCLES+1;
+
+
+IF bInit THEN 				// Init Step to close all sockets after login PLC with  downlaod
 	fbSocketCloseAll(
 		sSrvNetId:= '', 
 		bExecute:= TRUE, 
@@ -115,6 +119,9 @@ ELSE
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
+      <LineId Id="330" Count="0" />
+      <LineId Id="332" Count="0" />
+      <LineId Id="331" Count="0" />
       <LineId Id="211" Count="9" />
       <LineId Id="271" Count="0" />
       <LineId Id="221" Count="0" />
